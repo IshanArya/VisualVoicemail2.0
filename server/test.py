@@ -1,7 +1,6 @@
 import shorttext
 from sklearn.naive_bayes import GaussianNB
 
-# subdict = shorttext.data.subjectkeywords()
 subdict = shorttext.data.retrieve_jsondata_as_dict('./training data/categories data.json')
 topicmodeler = shorttext.generators.LDAModeler()
 
@@ -14,4 +13,4 @@ classifier = shorttext.classifiers.TopicVectorSkLearnClassifier(
     topicmodeler, GaussianNB())
 classifier.train(subdict)
 
-print(classifier.score("fake news"))
+print(classifier.score("Hey can you please call me back as soon as possible?"))

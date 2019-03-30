@@ -1,7 +1,7 @@
 {
     "not-spam": [
         "Hey can you call me back? Thanks!",
-        "Yo this is your brother. I need some money",
+        "Yo this is your brother. I need some money.",
         "Hey Sally, can you call me back when you have time?",
         "I hate your voicemail... Anyway, I'm calling about the internship. Call me back when you have time.",
         "Hey, can you call me back at this number? Thanks.",
@@ -16,7 +16,8 @@
         "Hey Teressa wanna grab lunch this friday?",
         "Hey is my curry ready?",
         "I know you're there. Pick up.",
-        "hey i saw you at the mall. we should hang out."
+        "hey i saw you at the mall. we should hang out.",
+        "Hey dude. Looks like you're not home. Give me a call back when you find time."
     ],
     "urgent": [
         "Sally the craziest thing just happened. Call me back as soon as possible by.",
@@ -31,7 +32,8 @@
         "I need dire help. Please call me as soon as you can.",
         "Hey Derek this is Samantha from Facebook. I was wondering if you had time to talk about the job you applied for. Call me back at 8002497263",
         "You have to call back asap. Haley just broke up with him.",
-        "Hi this is Tom from Subway calling about the job application you filled out this week. We would like to schedule you for an interview sometime. Call back when you get the chance."
+        "Hi this is Tom from Subway calling about the job application you filled out this week. We would like to schedule you for an interview sometime. Call back when you get the chance.",
+        "Hey can you please call me back as soon as possible?"
     ],
     "low-priority": [
         "Hello?",
@@ -48,7 +50,10 @@
         "Oops wrong number",
         "sorry",
         "bye",
-        "fake news"
+        "fake news",
+        "Kyle is a sex god.",
+        "Hye buddy. Just wanted to wish you a happy birthday. Enjoy your day!",
+        "Rahul is a demon. Defriend him on facebook."
     ],
     "spam": [
         "Hi my name is Jeremy Corbyn. Would you like to buy a brand new Brexit? Most people report having issues with their brexits after 2 or 3 years. If you would like a new Brexit, please call us back at 9999999999.",
@@ -68,6 +73,11 @@
         "We would like to enquire about a loan.",
         "We are calling about a recent transaction you made that failed. Give us your social security number or else.",
         "We tracked 3 large expenditures on your card last week. Please call us back immediately.",
-        "Call quick so you don't miss this once in a life time offer!"
+        "Call quick so you don't miss this once in a life time offer!",
+        "Join the mlm brookshirehathaway today. Call 1800 to get a massive dick.",
+        "Urgent: call from the IRS of America for your bank account number immediately to pay 1 million dollars to the USA States Government of America or you will be deported.",
+        "Urgent: call from the IRS of America for your bank account number or you will be deported.",
+        "Urgent: call from the IRS of America for your bank account number to pay 1 million dollars.",
+        "I have a plan to earn you 1000 dollars a week for life. You will never have to work again. Call now to get this exclusive deal."
     ]
 }
