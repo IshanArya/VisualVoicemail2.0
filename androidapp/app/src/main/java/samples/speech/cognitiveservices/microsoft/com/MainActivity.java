@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.microsoft.cognitiveservices.speech.ResultReason;
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult;
@@ -19,6 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,17 +39,17 @@ public class MainActivity extends AppCompatActivity {
     private static String serviceRegion = "eastus";
 
     TextView txt;
-
+    TextView analysis_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        analysis_text = findViewById(R.id.analysis_text);
         // Note: we need to request the permissions
         int requestCode = 5; // unique code for the permission request
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{RECORD_AUDIO, INTERNET}, requestCode);
 
-        Button reeval = findViewById(R.id.button2);
+        ButtonRectangle reeval = findViewById(R.id.button2);
         TextView sentiment = (TextView) this.findViewById(R.id.sentimText);
         reeval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSpeechButtonClicked(View v) {
-        TextView txt = (TextView) this.findViewById(R.id.hello); // 'hello' is the ID of your text view
+        txt = (TextView) this.findViewById(R.id.hello); // 'hello' is the ID of your text view
         TextView sentiment = (TextView) this.findViewById(R.id.sentimText); // 'sentimText' is the ID of our spam/ham filter
-
+        String text = "";
         try {
             SpeechConfig config = SpeechConfig.fromSubscription(speechSubscriptionKey, serviceRegion);
             assert(config != null);
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 String resultFormatted = result.toString().substring(result.toString().indexOf("<") + 1, result.toString().lastIndexOf(">"));
                 txt.setText(resultFormatted);
                 sentiment.setText("This is spam for sure buddy.");
+                text = resultFormatted;
             }
             else {
                 txt.setText("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
@@ -88,5 +93,26 @@ public class MainActivity extends AppCompatActivity {
             Log.e("SpeechSDKDemo", "unexpected " + ex.getMessage());
             assert(false);
         }
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="127.0.0.1";
+        url = url + "?text=\"" + text + "\"";
+        analysis_text.setText(url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        analysis_text.setText("Response is: "+ response.substring(0,500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                analysis_text.setText("That didn't work!");
+            }
+        });
+
+
+
     }
 }
