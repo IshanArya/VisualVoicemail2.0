@@ -16,11 +16,27 @@ classifier = shorttext.classifiers.TopicVectorSkLearnClassifier(
 classifier.train(subdict)
 
 @app.route('/api/categorizeText/')
-def hello_world():
+def categorizeText():
     text = request.args["text"]
     score = classifier.score(text)
-    score = json.dumps(score)
-    return score
+    for x in score:
+        if score[x] == 1.0:
+            return x
+    return text
+
+@app.route('/api/retrain/')
+def retrainData():
+    text = request.args["text"]
+    category = request.args["category"]
+
+    subdict[category].append(text)
+    topicmodeler.train(subdict, 4)
+    classifier = shorttext.classifiers.TopicVectorSkLearnClassifier(
+        topicmodeler, GaussianNB())
+    classifier.train(subdict)
+    
+    return json.dumps(subdict)
+
 
 if __name__ == '__main__':
     app.run()
