@@ -9,7 +9,7 @@
 
 
     android:padding="20dp"
-    tools:context="samples.speech.cognitiveservices.microsoft.com.MainActivity"
+    tools:context="samples.speech.cognitiveservices.microsoft.com.VoicemailActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
@@ -41,14 +41,13 @@
 
     <TextView
         android:id="@+id/sentimText"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button2"
         android:layout_alignStart="@+id/speech_button"
-        android:layout_centerHorizontal="false"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
-        android:text="recategorize"
-        android:textAlignment="center" />
+        android:text="recategorize" />
 
     <Button
         android:id="@+id/button2"
@@ -59,6 +58,14 @@
         android:layout_marginBottom="36dp"
         android:text="Recalc" />
 
+    <Button
+        android:id="@+id/voicemail"
+        android:layout_centerHorizontal="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:text="Voicemail" />
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package samples.speech.cognitiveservices.microsoft.com;
 
+import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sentiment.setText("Actually it isn't.");
+            }
+        });
+
+        Button voicemail = findViewById(R.id.voicemail);
+        Intent voicemailIntent = new Intent(this, VoicemailActivity.class);
+        voicemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(voicemailIntent);
             }
         });
     }
