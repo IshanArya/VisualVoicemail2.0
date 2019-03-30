@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     android:padding="20dp"
     tools:context="samples.speech.cognitiveservices.microsoft.com.MainActivity"
     tools:showIn="@layout/activity_main">
-
-    <TextView
-        android:id="@+id/hello"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Hello World!"
-        android:layout_centerHorizontal="true"
-        />
 
     <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/speech_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:textColor="#D5D9E0"
         android:background="#E30075"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/hello"
         android:onClick="onSpeechButtonClicked"
         android:text="Button" />
 
@@ -35,46 +25,25 @@
         android:id="@+id/progressBarCircularIndeterminate"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center"
         android:background="#E30075" />
 
     <TextView
-        android:id="@+id/sentimText"
+        android:id="@+id/speechText"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignStart="@+id/speech_button"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="recategorize"
         />
-
-    <com.gc.materialdesign.views.ButtonRectangle
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#D5D9E0"
-        android:background="#E30075"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
-        android:text="Recalc" />
-
-    <Button
-        android:id="@+id/voicemail"
-        android:layout_centerHorizontal="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:text="Voicemail" />
     <TextView
-        android:id="@+id/analysis_text"
+        android:id="@+id/successText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:layout_marginTop="300dp"
+        android:layout_gravity="center"
+        android:text="TextView"
+        android:layout_marginBottom="0dp"/>
 
 
-</RelativeLayout>
+</LinearLayout>

@@ -36,31 +36,18 @@ public class MainActivity extends AppCompatActivity {
     // Replace below with your own service region (e.g., "westus").
     private static String serviceRegion = "eastus";
 
-    TextView txt;
-    TextView analysis_text;
+    TextView speechText;
+    TextView successText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(VoicemailLibrary.getSize() == 0) {
-            VoicemailLibrary.initializeLibrary();
-        }
-        analysis_text = findViewById(R.id.analysis_text);
+        VoicemailLibrary.initializeLibrary();
         // Note: we need to request the permissions
         int requestCode = 5; // unique code for the permission request
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{RECORD_AUDIO, INTERNET}, requestCode);
 
-        ButtonRectangle reeval = findViewById(R.id.button2);
-        TextView sentiment = (TextView) this.findViewById(R.id.sentimText);
-        reeval.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sentiment.setText("Actually it isn't.");
-            }
-        });
-
-
-        Button voicemail = findViewById(R.id.voicemail);
+        Button voicemail = findViewById(R.id.voicemails);
         Intent voicemailIntent = new Intent(this, VoicemailActivity.class);
         voicemail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSpeechButtonClicked(View v) {
-        txt = (TextView) this.findViewById(R.id.hello); // 'hello' is the ID of your text view
-        TextView sentiment = (TextView) this.findViewById(R.id.sentimText); // 'sentimText' is the ID of our spam/ham filter
+        speechText = (TextView) this.findViewById(R.id.speechText);
+        successText = (TextView) this.findViewById(R.id.successText);
         String text = "";
         try {
             SpeechConfig config = SpeechConfig.fromSubscription(speechSubscriptionKey, serviceRegion);
@@ -91,12 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (result.getReason() == ResultReason.RecognizedSpeech) {
                 String resultFormatted = result.toString().substring(result.toString().indexOf("<") + 1, result.toString().lastIndexOf(">"));
-                txt.setText(resultFormatted);
-                sentiment.setText("This is spam for sure buddy.");
+                speechText.setText(resultFormatted);
                 text = resultFormatted;
             }
             else {
-                txt.setText("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
+                speechText.setText("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
             }
 
             reco.close();
@@ -112,19 +98,19 @@ public class MainActivity extends AppCompatActivity {
         try {
             String urlText = URLEncoder.encode(text, "UTF-8");
             url = url + urlText;
-            analysis_text.setText(url);
+            successText.setText(url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             addMail.setText(response);
                             // Display the first 500 characters of the response string.
-                            analysis_text.setText("Response is: "+ response.substring(0,500));
+                            successText.setText("Response is: "+ response.substring(0,500));
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    analysis_text.setText("That didn't work!");
+                    successText.setText("That didn't work!");
                 }
             });
         } catch (UnsupportedEncodingException e) {
