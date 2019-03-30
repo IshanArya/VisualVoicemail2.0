@@ -4,9 +4,11 @@ public class Voicemail {
     private int id;
     private String text;
     private static int numofMails = 0;
+    private String category;
     public Voicemail(String text) {
         this.id = numofMails;
         this.text = text;
+        this.category = null;
         numofMails++;
     }
 
@@ -29,6 +31,10 @@ public class Voicemail {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }
