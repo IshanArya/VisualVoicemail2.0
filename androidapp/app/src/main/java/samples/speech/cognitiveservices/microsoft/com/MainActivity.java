@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        VoicemailLibrary.addVoiceMail(10, new Voicemail("ABC"));
+        VoicemailLibrary.addVoiceMail(11, new Voicemail("DEF"));
+
+
+
         Button voicemail = findViewById(R.id.voicemail);
         Intent voicemailIntent = new Intent(this, VoicemailActivity.class);
         voicemail.setOnClickListener(new View.OnClickListener() {
