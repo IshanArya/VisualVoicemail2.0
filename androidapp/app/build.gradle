@@ -35,4 +35,6 @@ dependencies {
     api('konifar:fab-transformation:1.0.0') {
         exclude group: 'com.nineoldandroids', module: 'library'
     }
+    api 'com.android.volley:volley:1.1.1'
+
 }
