@@ -13,4 +13,4 @@ classifier = shorttext.classifiers.TopicVectorSkLearnClassifier(
     topicmodeler, GaussianNB())
 classifier.train(subdict)
 
-print(classifier.score("Hey can you please call me back as soon as possible?"))
+print(classifier.score(""))
