@@ -41,37 +41,37 @@ public class InfoActivity extends AppCompatActivity {
         //typ.setText(typeString);
 
 
-        Button recat = (Button) findViewById(R.id.recat);
-        recat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RequestQueue queue = Volley.newRequestQueue(this);
-                String url ="http://localhost:5000/api/categorizeText/?text=";
-                try {
-                    String urlText = URLEncoder.encode(transcript, "UTF-8");
-                    url = url + urlText;
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    // Display the first 500 characters of the response string.
-                                    transc.setText("Response is: "+ response.substring(0,500));
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            transc.setText("That didn't work!");
-                        }
-                    });
-                } catch (UnsupportedEncodingException e) {
-                    Log.d("Debug", e.getMessage());
-                }
-                Voicemail addMail = new Voicemail(transcript);
-                VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
-            }
-        });
 
 
 
     }
+
+
+//    public void onRecatClicked(View v) {
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        String url ="http://localhost:5000/api/categorizeText/?text=";
+//        try {
+//            String urlText = URLEncoder.encode(transcript, "UTF-8");
+//            url = url + urlText;
+//            TextView transc = (TextView) findViewById(R.id.transcript);
+//            transc.setText(url);
+//            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String response) {
+//                            // Display the first 500 characters of the response string.
+//                            transc.setText("Response is: "+ response.substring(0,500));
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    transc.setText("That didn't work!");
+//                }
+//            });
+//        } catch (UnsupportedEncodingException e) {
+//            Log.d("Debug", e.getMessage());
+//        }
+//        Voicemail addMail = new Voicemail(transcript);
+//        VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
+//    }
 }
