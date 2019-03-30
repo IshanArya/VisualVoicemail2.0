@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Quickstart</string>
+    <string name="Button">Listen</string>
+    <string name="TextView">Categorize</string>
+    <string name="Button2">Re-evaluate Category</string>
 </resources>

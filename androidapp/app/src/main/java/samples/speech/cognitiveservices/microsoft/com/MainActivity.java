@@ -31,10 +31,20 @@ public class MainActivity extends AppCompatActivity {
         // Note: we need to request the permissions
         int requestCode = 5; // unique code for the permission request
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{RECORD_AUDIO, INTERNET}, requestCode);
+
+        Button reeval = findViewById(R.id.button2);
+        TextView sentiment = (TextView) this.findViewById(R.id.sentimText);
+        reeval.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sentiment.setText("Actually it isn't.");
+            }
+        });
     }
 
     public void onSpeechButtonClicked(View v) {
         TextView txt = (TextView) this.findViewById(R.id.hello); // 'hello' is the ID of your text view
+        TextView sentiment = (TextView) this.findViewById(R.id.sentimText); // 'sentimText' is the ID of our spam/ham filter
 
         try {
             SpeechConfig config = SpeechConfig.fromSubscription(speechSubscriptionKey, serviceRegion);
@@ -52,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
             assert(result != null);
 
             if (result.getReason() == ResultReason.RecognizedSpeech) {
-                txt.setText(result.toString());
+                String resultFormatted = result.toString().substring(result.toString().indexOf("<") + 1, result.toString().lastIndexOf(">"));
+                txt.setText(resultFormatted);
+                sentiment.setText("This is spam for sure buddy.");
             }
             else {
                 txt.setText("Error recognizing. Did you update the subscription info?" + System.lineSeparator() + result.toString());
