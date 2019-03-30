@@ -35,7 +35,7 @@ public class VoicemailActivity extends AppCompatActivity {
                 Arrays.asList(voicemailNumsArr));
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         voicemail_list.setAdapter(adapter);
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, InfoActivity.class);
         voicemail_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
