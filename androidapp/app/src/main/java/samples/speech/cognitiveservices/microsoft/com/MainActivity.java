@@ -21,11 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import java.util.concurrent.Future;
 
@@ -44,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(VoicemailLibrary.getSize() == 0) {
+            VoicemailLibrary.initializeLibrary();
+        }
         analysis_text = findViewById(R.id.analysis_text);
         // Note: we need to request the permissions
         int requestCode = 5; // unique code for the permission request
@@ -95,23 +95,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="127.0.0.1";
-        url = url + "?text=\"" + text + "\"";
-        analysis_text.setText(url);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        analysis_text.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                analysis_text.setText("That didn't work!");
-            }
-        });
-
+        String url ="http://localhost:5000/api/categorizeText/?text=";
+        try {
+            String urlText = URLEncoder.encode(text, "UTF-8");
+            url = url + urlText;
+            analysis_text.setText(url);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            analysis_text.setText("Response is: "+ response.substring(0,500));
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    analysis_text.setText("That didn't work!");
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            Log.d("Debug", e.getMessage());
+        }
+        Voicemail addMail = new Voicemail(text);
+        VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
 
 
     }
