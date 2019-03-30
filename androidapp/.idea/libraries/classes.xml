@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="classes">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/app_classes/debug/bundleDebugClasses/classes.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
