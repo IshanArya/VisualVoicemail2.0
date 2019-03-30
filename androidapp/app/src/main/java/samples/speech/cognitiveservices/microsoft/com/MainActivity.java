@@ -59,10 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        VoicemailLibrary.addVoiceMail(10, new Voicemail("ABC"));
-        VoicemailLibrary.addVoiceMail(11, new Voicemail("DEF"));
-
-
 
         Button voicemail = findViewById(R.id.voicemail);
         Intent voicemailIntent = new Intent(this, VoicemailActivity.class);
@@ -109,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             assert(false);
         }
 
+        Voicemail addMail = new Voicemail(text);
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://localhost:5000/api/categorizeText/?text=";
         try {
@@ -119,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            addMail.setText(response);
                             // Display the first 500 characters of the response string.
                             analysis_text.setText("Response is: "+ response.substring(0,500));
                         }
@@ -131,8 +130,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             Log.d("Debug", e.getMessage());
         }
-        Voicemail addMail = new Voicemail(text);
+
         VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
+
 
 
     }
