@@ -41,24 +41,32 @@
 
     <TextView
         android:id="@+id/sentimText"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button2"
         android:layout_alignStart="@+id/speech_button"
-        android:layout_centerHorizontal="false"
-        android:layout_marginBottom="0dp"
+        android:layout_centerHorizontal="true"
         android:text="recategorize"
-        android:textAlignment="center" />
+        />
 
-    <Button
+    <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#D5D9E0"
+        android:background="#E30075"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="36dp"
         android:text="Recalc" />
 
+    <TextView
+        android:id="@+id/analysis_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="TextView" />
 
 
 </RelativeLayout>
