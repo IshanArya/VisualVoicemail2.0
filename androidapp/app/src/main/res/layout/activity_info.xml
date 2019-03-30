@@ -7,14 +7,14 @@
     tools:context=".InfoActivity">
 
     <TextView
-        android:id="@+id/type"
+        android:id="@+id/typeText"
         android:layout_width="244dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="492dp"
         android:text="Voicemail Type: "
-        app:layout_constraintBottom_toTopOf="@+id/recat"
+        app:layout_constraintBottom_toTopOf="@id/recat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +27,7 @@
         android:text="Transcript"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
+        app:layout_constraintTop_toBottomOf="@id/typeText" />
 
     <Button
         android:id="@+id/recat"
@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="126dp"
         android:layout_marginBottom="85dp"
-        android:text="urgent"
+        android:text="not-spam"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
+        app:layout_constraintTop_toBottomOf="@id/typeText" />
 
 </android.support.constraint.ConstraintLayout>

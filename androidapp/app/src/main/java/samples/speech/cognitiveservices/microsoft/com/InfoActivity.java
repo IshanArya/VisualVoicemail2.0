@@ -31,14 +31,14 @@ public class InfoActivity extends AppCompatActivity {
         if (extras != null) {
             transcript = extras.getString("text");
             id = extras.getInt("id");
-            typeString = extras.getString("type");
+            typeString = extras.getString("category");
         }
 
         TextView transc = (TextView) findViewById(R.id.transcript);
-        TextView typ = (TextView) findViewById(R.id.type);
+        TextView typ = (TextView) findViewById(R.id.typeText);
         transc.setText(transcript);
         typ.setText(typeString);
-
+        Log.d("asdf", typeString);
 
 
 
@@ -61,7 +61,7 @@ public class InfoActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             // Display the first 500 characters of the response string.
                             transc.setText("Response is: "+ response.substring(0,500));
-                            TextView typ = (TextView) findViewById(R.id.type);
+                            TextView typ = (TextView) findViewById(R.id.typeText);
                             typ.setText(response);
                         }
                     }, new Response.ErrorListener() {

@@ -4,7 +4,7 @@ public class Voicemail {
     private int id;
     private String text;
     private static int numofMails = 0;
-    private String category;
+    public String category;
     public Voicemail(String text) {
         this.id = numofMails;
         this.text = text;
@@ -21,6 +21,7 @@ public class Voicemail {
     public int hashCode() {
         return this.id;
     }
+
 
     public int getId() {
         return this.id;
