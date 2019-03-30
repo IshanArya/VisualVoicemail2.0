@@ -40,7 +40,10 @@ public class VoicemailActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("debug", "position: " + position + voicemailNums.toArray(new Integer[0])[position]);
                 i.putExtra("id", voicemailNums.toArray(new Integer[0])[position]);
+                i.putExtra("text", VoicemailLibrary.getVoicemailMap().get(voicemailNums.toArray(new Integer[0])[position]).getText());
+                Log.d("debug", VoicemailLibrary.getVoicemailMap().get(voicemailNums.toArray(new Integer[0])[position]).getText());
                 startActivity(i);
             }
         });
