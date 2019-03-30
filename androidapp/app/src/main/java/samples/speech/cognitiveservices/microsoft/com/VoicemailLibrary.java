@@ -21,6 +21,9 @@ public class VoicemailLibrary {
         return voicemailMap.remove(id);
     }
     public static int getSize() {
+        if (voicemailMap == null) {
+            return 0;
+        }
         return voicemailMap.size();
     }
 

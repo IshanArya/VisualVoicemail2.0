@@ -9,7 +9,7 @@
 
 
     android:padding="20dp"
-    tools:context="samples.speech.cognitiveservices.microsoft.com.VoicemailActivity"
+    tools:context="samples.speech.cognitiveservices.microsoft.com.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView

@@ -20,7 +20,7 @@ public class Voicemail {
     }
 
     public String getText() {
-        return this.getText();
+        return this.text;
     }
 
     public void setId(int id) {
