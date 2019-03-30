@@ -7,7 +7,4 @@
     tools:context=".VoicemailActivity">
 
     <include layout="@layout/content_voicemail" />
-
-
-
 </android.support.constraint.ConstraintLayout>
