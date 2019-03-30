@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.microsoft.cognitiveservices.speech.ResultReason;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private static String speechSubscriptionKey = "6bab225b74284c6c87d834ff6188a0cc";
     // Replace below with your own service region (e.g., "westus").
     private static String serviceRegion = "eastus";
+
+    TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
