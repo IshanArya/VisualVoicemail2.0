@@ -16,8 +16,10 @@
         "Hey Teressa wanna grab lunch this friday?",
         "Hey is my curry ready?",
         "I know you're there. Pick up.",
-        "hey i saw you at the mall. we should hang out.",
-        "Hey dude. Looks like you're not home. Give me a call back when you find time."
+        "hey I saw you at the mall. We should hang out.",
+        "Hey dude. Looks like you're not home. Give me a call back when you find time.",
+        "Hey dude. Looks like you're not home. Give me a call back.",
+        "Hey dude. Looks like you're not available. Give me a call back."
     ],
     "urgent": [
         "Sally the craziest thing just happened. Call me back as soon as possible by.",
