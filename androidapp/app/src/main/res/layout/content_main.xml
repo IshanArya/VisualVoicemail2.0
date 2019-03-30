@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context="samples.speech.cognitiveservices.microsoft.com.VoicemailActivity"
+    tools:context="samples.speech.cognitiveservices.microsoft.com.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <com.gc.materialdesign.views.ButtonRectangle
