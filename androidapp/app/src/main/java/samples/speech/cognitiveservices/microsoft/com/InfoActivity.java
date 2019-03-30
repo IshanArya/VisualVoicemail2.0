@@ -21,7 +21,7 @@ public class InfoActivity extends AppCompatActivity {
 
     private String transcript;
     private int id;
-    //private String typeString;
+    private String typeString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,13 @@ public class InfoActivity extends AppCompatActivity {
         if (extras != null) {
             transcript = extras.getString("text");
             id = extras.getInt("id");
-            //typeString = extras.getString("type");
+            typeString = extras.getString("type");
         }
 
         TextView transc = (TextView) findViewById(R.id.transcript);
         TextView typ = (TextView) findViewById(R.id.type);
         transc.setText(transcript);
-        //typ.setText(typeString);
+        typ.setText(typeString);
 
 
 
@@ -51,7 +51,8 @@ public class InfoActivity extends AppCompatActivity {
         String url ="http://localhost:5000/api/categorizeText/?text=";
         try {
             String urlText = URLEncoder.encode(transcript, "UTF-8");
-            url = url + urlText;
+            String urlText2 = URLEncoder.encode(typeString, "UTF-8");
+            url = url + urlText + "&category=" + urlText2;
             TextView transc = (TextView) findViewById(R.id.transcript);
             transc.setText(url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -60,6 +61,8 @@ public class InfoActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             // Display the first 500 characters of the response string.
                             transc.setText("Response is: "+ response.substring(0,500));
+                            TextView typ = (TextView) findViewById(R.id.type);
+                            typ.setText(response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -70,7 +73,6 @@ public class InfoActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             Log.d("Debug", e.getMessage());
         }
-        Voicemail addMail = new Voicemail(transcript);
-        VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
+
     }
 }

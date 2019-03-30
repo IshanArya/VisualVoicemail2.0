@@ -12,6 +12,11 @@ public class Voicemail {
         numofMails++;
     }
 
+    public Voicemail(String text, String category) {
+        this(text);
+        this.category = category;
+    }
+
     @Override
     public int hashCode() {
         return this.id;
