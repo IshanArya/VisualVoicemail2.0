@@ -1,5 +1,6 @@
 package samples.speech.cognitiveservices.microsoft.com;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,60 +20,123 @@ import java.net.URLEncoder;
 
 public class InfoActivity extends AppCompatActivity {
 
-    private String transcript;
-    private int id;
-    private String typeString;
+    private String voicemailMessage;
+    private String voicemailCategory;
+    Intent backtrack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            transcript = extras.getString("text");
-            id = extras.getInt("id");
-            typeString = extras.getString("category");
-        }
+        voicemailMessage = extras.getString("text");
+        voicemailCategory = extras.getString("category");
 
-        TextView transc = (TextView) findViewById(R.id.transcript);
-        TextView typ = (TextView) findViewById(R.id.typeText);
-        transc.setText(transcript);
-        typ.setText(typeString);
-        Log.d("asdf", typeString);
+        TextView categoryView = (TextView) findViewById(R.id.category);
+        TextView messageView = (TextView) findViewById(R.id.messageView);
+        messageView.setText(voicemailMessage);
+        categoryView.setText(voicemailCategory);
 
 
-
+        backtrack = new Intent(this, MainActivity.class);
 
     }
 
 
-    public void onRecatClicked(View v) {
+    public void onSetSpamClicked(View v) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://localhost:5000/api/categorizeText/?text=";
+        String url ="http://128.61.15.61:5000/api/retrain/?text=";
         try {
-            String urlText = URLEncoder.encode(transcript, "UTF-8");
-            String urlText2 = URLEncoder.encode(typeString, "UTF-8");
+            String urlText = URLEncoder.encode(voicemailMessage, "UTF-8");
+            String urlText2 = URLEncoder.encode("spam", "UTF-8");
             url = url + urlText + "&category=" + urlText2;
-            TextView transc = (TextView) findViewById(R.id.transcript);
-            transc.setText(url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             // Display the first 500 characters of the response string.
-                            transc.setText("Response is: "+ response.substring(0,500));
-                            TextView typ = (TextView) findViewById(R.id.typeText);
-                            typ.setText(response);
+                            startActivity(backtrack);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    transc.setText("That didn't work!");
+                    startActivity(backtrack);
                 }
             });
         } catch (UnsupportedEncodingException e) {
             Log.d("Debug", e.getMessage());
         }
-
+    }
+    public void onSetNotSpamClicked(View v) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://128.61.15.61:5000/api/retrain/?text=";
+        try {
+            String urlText = URLEncoder.encode(voicemailMessage, "UTF-8");
+            String urlText2 = URLEncoder.encode("not-spam", "UTF-8");
+            url = url + urlText + "&category=" + urlText2;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            startActivity(backtrack);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    startActivity(backtrack);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            Log.d("Debug", e.getMessage());
+        }
+    }
+    public void onSetUrgentClicked(View v) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://128.61.15.61:5000/api/retrain/?text=";
+        try {
+            String urlText = URLEncoder.encode(voicemailMessage, "UTF-8");
+            String urlText2 = URLEncoder.encode("urgent", "UTF-8");
+            url = url + urlText + "&category=" + urlText2;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            startActivity(backtrack);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    startActivity(backtrack);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            Log.d("Debug", e.getMessage());
+        }
+    }
+    public void onSetLowPriorityClicked(View v) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://localhost:5000/api/retrain/?text=";
+        try {
+            String urlText = URLEncoder.encode(voicemailMessage, "UTF-8");
+            String urlText2 = URLEncoder.encode("low-priority", "UTF-8");
+            url = url + urlText + "&category=" + urlText2;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            startActivity(backtrack);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    startActivity(backtrack);
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            Log.d("Debug", e.getMessage());
+        }
     }
 }

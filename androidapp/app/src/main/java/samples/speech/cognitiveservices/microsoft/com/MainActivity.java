@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         Voicemail addMail = new Voicemail(text);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://localhost:5000/api/categorizeText/?text=";
+        String url ="http://10.0.2.2:5000/api/categorizeText/?text=";
         try {
             String urlText = URLEncoder.encode(text, "UTF-8");
             url = url + urlText;
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            addMail.setText(response);
+                            addMail.category = Category.get(response);
                             // Display the first 500 characters of the response string.
                             successText.setText("Response is: "+ response.substring(0,500));
                         }
@@ -113,11 +113,14 @@ public class MainActivity extends AppCompatActivity {
                     successText.setText("That didn't work!");
                 }
             });
+            queue.add(stringRequest);
         } catch (UnsupportedEncodingException e) {
             Log.d("Debug", e.getMessage());
         }
 
-        VoicemailLibrary.addVoiceMail(addMail.getId(), addMail);
+        VoicemailLibrary.voicemails.add(addMail);
+
+
 
 
 
